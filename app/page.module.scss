@@ -1,0 +1,81 @@
+@import "./libs/variables.module.scss";
+
+@keyframes animate {
+  0%,
+  100% {
+    clip-path: polygon(
+      1% 57%,
+      13% 46%,
+      32% 40%,
+      52% 35%,
+      64% 45%,
+      69% 60%,
+      76% 69%,
+      90% 64%,
+      100% 54%,
+      100% 100%,
+      1% 99%
+    );
+  }
+  50% {
+    clip-path: polygon(
+      1% 51%,
+      12% 61%,
+      24% 69%,
+      39% 73%,
+      50% 66%,
+      61% 58%,
+      71% 46%,
+      84% 34%,
+      100% 32%,
+      100% 100%,
+      1% 100%
+    );
+  }
+}
+
+.main {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: $background-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.name-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  @media screen and (max-width: $tablet) {
+    padding: 1rem;
+  }
+
+  & > h2 {
+    position: absolute;
+    font-size: 6rem;
+    color: $main-blue;
+    @media screen and (max-width: $mobile) {
+      font-size: 2rem;
+    }
+    @media screen and (max-width: $tablet) {
+      font-size: 4rem;
+    }
+    &:nth-child(1) {
+      color: transparent;
+      -webkit-text-stroke: 2px $main-blue;
+    }
+
+    &:nth-child(2) {
+      text-shadow: 2px 2px $deep-blue;
+      animation: animate 4s ease-in-out infinite;
+    }
+  }
+}
