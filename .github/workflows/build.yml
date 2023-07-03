@@ -15,3 +15,25 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_ID }}
           password: ${{ secrets.REGISTRY_PW }}
+      - name: Set up Docker QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ${{ secrets.REGISTRY_URL }}/who-portfolio:${{ github.run_number }}
+          platforms: linux/arm64
+      - name: ssh commands
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_IP }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PW }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cat ./pw.txt | docker login --username ${{ secrets.REGISTRY_ID }} --password-stdin ${{ secrets.REGISTRY_URL }}
+            docker container stop who-portfolio
+            docker container rm who-portfolio
+            docker container run -p 3000:3000 -d --name test-con ${{ secrets.REGISTRY_URL }}/who-portfolio:${{ github.run_number }}
