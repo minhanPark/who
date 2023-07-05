@@ -5,7 +5,7 @@ import createTitle from "./libs/createTitle";
 const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 export const metadata = {
-  title: createTitle("홈"),
+  title: createTitle(),
   description: "러닝워터",
 };
 
