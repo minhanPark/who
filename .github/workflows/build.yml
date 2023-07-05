@@ -36,4 +36,4 @@ jobs:
             cat ./pw.txt | docker login --username ${{ secrets.REGISTRY_ID }} --password-stdin ${{ secrets.REGISTRY_URL }}
             docker container stop who-portfolio
             docker container rm who-portfolio
-            docker container run -p 3000:3000 -d --name test-con ${{ secrets.REGISTRY_URL }}/who-portfolio:${{ github.run_number }}
+            docker container run -p 3000:3000 -d --name who-portfolio ${{ secrets.REGISTRY_URL }}/who-portfolio:${{ github.run_number }}
