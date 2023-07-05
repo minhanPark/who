@@ -29,7 +29,7 @@ export default function Home() {
           <h2>RunningWater</h2>
         </div>
         <div className={styles["box-wrapper"]}>
-          <LinkCircle href="#">
+          <LinkCircle href="/notion-resume">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="2500"
