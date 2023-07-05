@@ -1,5 +1,11 @@
+import createTitle from "./libs/createTitle";
 import styles from "./page.module.scss";
 import Link from "next/link";
+
+export const metadata = {
+  title: createTitle("홈"),
+  description: "러닝워터의 포트폴리오 입니다.",
+};
 
 interface LinkProps {
   href: string;
@@ -15,7 +21,6 @@ const LinkCircle: React.FC<LinkProps> = ({ href, children }) => {
 };
 
 export default function Home() {
-  console.log(styles);
   return (
     <main className={styles.main}>
       <div className={styles.container}>
