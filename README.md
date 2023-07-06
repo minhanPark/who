@@ -7,19 +7,19 @@
 
 ## ⚒️ 기술스택
 
-<detail>
+<details>
     <summary>Client</summary>
     <ul>
         <li>Next.js</li>
         <li>Typescript</li>
         <li>SASS</li>
     </ul>
-</detail>
+</details>
 
-<detail>
+<details>
     <summary>Devops</summary>
     <ul>
         <li>Docker</li>
         <li>Github Action</li>
     </ul>
-</detail>
+</details>
