@@ -1,12 +1,27 @@
 "use client";
 
-import { useState, ReactEventHandler } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { BsFillTerminalFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 
+interface ImageMap {
+  "/background-light.webp": "/background-light.jpg";
+  "/background-dark.webp": "/background-dark.jpg";
+  [key: string]: string;
+}
+
+const fallbackImg: ImageMap = {
+  "/background-light.webp": "/background-light.jpg",
+  "/background-dark.webp": "/background-dark.jpg",
+};
+
 const Page = () => {
-  const [imageSrc, setImageSrc] = useState("/background.webp");
+  const [imageSrc, setImageSrc] = useState(
+    new Date().getHours() > 7 && new Date().getHours() < 17
+      ? "/background-light.webp"
+      : "/background-dark.webp"
+  );
   return (
     <div style={{ height: "100vh", position: "relative" }}>
       <Image
@@ -14,12 +29,19 @@ const Page = () => {
         alt="background"
         fill={true}
         style={{ objectFit: "cover" }}
-        onError={() => setImageSrc("/background.jpg")}
+        onError={() => {
+          setImageSrc(fallbackImg[imageSrc]);
+        }}
       />
       <motion.div
         drag
         dragMomentum={false}
         whileDrag={{ cursor: "grabbing" }}
+        onClick={(e) => {
+          if (e.detail === 2) {
+            console.log("you clicked");
+          }
+        }}
         style={{
           position: "relative",
           width: 62,
