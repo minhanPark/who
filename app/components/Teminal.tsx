@@ -31,19 +31,37 @@ const Terminal = () => {
           style={{
             background: "#ff7675",
             width: 50,
-            height: "100%",
+            height: 25,
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-evenly",
           }}
         >
           <div
             style={{
               background: "red",
-              display: "inline-block",
-              borderRadius: "9999px",
+              display: "flex",
+              borderRadius: "50%",
+              width: 18,
+              height: 18,
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <IoCloseSharp />
+            <IoCloseSharp size={15} />
+          </div>
+          <div
+            style={{
+              background: "blue",
+              display: "flex",
+              borderRadius: "50%",
+              width: 18,
+              height: 18,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <BiMinus />
           </div>
         </div>
       </div>
