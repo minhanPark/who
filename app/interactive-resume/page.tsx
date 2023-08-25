@@ -5,10 +5,16 @@ import Image from "next/image";
 import { BsFillTerminalFill } from "react-icons/bs";
 import { motion } from "framer-motion";
 import SmallIcon from "../components/SmallIcon";
+import Terminal from "../components/Teminal";
+
+export type ScreenType = "icon" | "terminal";
 
 const Page = () => {
   const [imageSrc, setImageSrc] = useState("/background.webp");
-  const [screen, setScreen] = useState<"icon" | "terminal">("icon");
+  const [screen, setScreen] = useState<ScreenType>("icon");
+  const changeScreen = (screen: ScreenType) => {
+    setScreen(screen);
+  };
   return (
     <div style={{ height: "100vh", position: "relative" }}>
       <Image
@@ -18,23 +24,11 @@ const Page = () => {
         style={{ objectFit: "cover" }}
         onError={() => setImageSrc("/background.jpg")}
       />
-      <motion.div
-        drag
-        dragMomentum={false}
-        whileDrag={{ cursor: "grabbing" }}
-        style={{
-          position: "relative",
-          width: 62,
-          height: 62,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 100,
-        }}
-      >
-        <BsFillTerminalFill size={60} />
-      </motion.div>
-      <SmallIcon />
+      {screen === "icon" ? (
+        <SmallIcon changeScreen={changeScreen} />
+      ) : (
+        <Terminal />
+      )}
     </div>
   );
 };

@@ -1,13 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaTerminal } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { ScreenType } from "../interactive-resume/page";
 
-const SmallIcon = () => {
+interface Props {
+  changeScreen: (screen: ScreenType) => void;
+}
+
+/**
+ * TODO:
+ * 1. 마우스 올렸을 시 grap 형태(scss 추가하면서 작업하기)
+ **/
+
+const SmallIcon = ({ changeScreen }: Props) => {
   const [clicked, setClicked] = useState(false);
-  const handleClick = () => {
-    setClicked((prev) => !prev);
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.detail === 2) {
+      changeScreen("terminal");
+    } else {
+      setClicked((prev) => !prev);
+    }
   };
   return (
     <motion.div
