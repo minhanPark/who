@@ -4,9 +4,11 @@ import { useState, ReactEventHandler } from "react";
 import Image from "next/image";
 import { BsFillTerminalFill } from "react-icons/bs";
 import { motion } from "framer-motion";
+import SmallIcon from "../components/SmallIcon";
 
 const Page = () => {
   const [imageSrc, setImageSrc] = useState("/background.webp");
+  const [screen, setScreen] = useState<"icon" | "terminal">("icon");
   return (
     <div style={{ height: "100vh", position: "relative" }}>
       <Image
@@ -32,6 +34,7 @@ const Page = () => {
       >
         <BsFillTerminalFill size={60} />
       </motion.div>
+      <SmallIcon />
     </div>
   );
 };
