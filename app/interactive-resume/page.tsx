@@ -10,7 +10,7 @@ export type ScreenType = "icon" | "terminal";
 
 const Page = () => {
   const [imageSrc, setImageSrc] = useState("/background.webp");
-  const [screen, setScreen] = useState<ScreenType>("icon");
+  const [screen, setScreen] = useState<ScreenType>("terminal");
   const changeScreen = (screen: ScreenType) => {
     setScreen(screen);
   };

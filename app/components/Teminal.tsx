@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { VscBlank } from "react-icons/vsc";
 import { IoCloseSharp } from "react-icons/io5";
 import { BiMinus } from "react-icons/bi";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import type { ScreenType } from "../interactive-resume/page";
 
@@ -13,9 +14,43 @@ interface Props {
   changeScreen: (screen: ScreenType) => void;
 }
 
+interface FormValues {
+  command: string;
+}
+
+const pwd = "Runnungwater@runningwater ~: ";
+
 const Terminal = ({ changeScreen }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [commands, setCommands] = useState<string[]>([]);
   const router = useRouter();
+  const { handleSubmit, control, reset } = useForm<FormValues>({
+    defaultValues: {
+      command: pwd,
+    },
+  });
+  const onValid: SubmitHandler<FormValues> = (data) => {
+    // 다른 명령어 없이 공백 문자로만 입력하면? trim을 한 후에 그대로 입력을 한다.
+    if (data.command.trim() === pwd.trim()) {
+      setCommands((prev) => [...prev, pwd]);
+    } else {
+      setCommands((prev) => [
+        ...prev,
+        data.command,
+        "존재하지 않는 명령어입니다.",
+      ]);
+    }
+    // 해당하는 명령어가 있다면? 커맨드 뒤에 붙여서 실행한다.
+    // 해당하는 명령어가 없다면? 커맨드 뒤에 해당 하는 명령어가 없다고 붙여서 실행한다.
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(onValid)();
+      reset({ command: pwd });
+    }
+  };
   return (
     <motion.div
       style={{
@@ -84,7 +119,28 @@ const Terminal = ({ changeScreen }: Props) => {
           flex: 1,
         }}
         onPointerDownCapture={(e) => e.stopPropagation()}
-      ></div>
+      >
+        {commands.map((command, index) => (
+          <p key={index}>{command}</p>
+        ))}
+        <Controller
+          name="command"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <textarea
+              value={value}
+              onChange={(e) => {
+                if (e.target.value.indexOf(pwd) === 0) {
+                  onChange(e);
+                }
+                return;
+              }}
+              style={{ width: "100%", resize: "none" }}
+              onKeyDown={handleKeyDown}
+            />
+          )}
+        />
+      </div>
     </motion.div>
   );
 };
