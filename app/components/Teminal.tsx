@@ -36,6 +36,9 @@ const Terminal = () => {
             alignItems: "center",
             justifyContent: "space-evenly",
           }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onPointerDownCapture={(e) => e.stopPropagation()}
         >
           <div
             style={{
@@ -48,7 +51,7 @@ const Terminal = () => {
               justifyContent: "center",
             }}
           >
-            <IoCloseSharp size={15} />
+            {isHovered ? <IoCloseSharp size={15} /> : <VscBlank size={15} />}
           </div>
           <div
             style={{
@@ -61,7 +64,7 @@ const Terminal = () => {
               justifyContent: "center",
             }}
           >
-            <BiMinus />
+            {isHovered ? <BiMinus size={15} /> : <VscBlank size={15} />}
           </div>
         </div>
       </div>
@@ -70,6 +73,7 @@ const Terminal = () => {
           background: "white",
           flex: 1,
         }}
+        onPointerDownCapture={(e) => e.stopPropagation()}
       ></div>
     </motion.div>
   );
