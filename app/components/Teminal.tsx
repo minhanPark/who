@@ -1,13 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { VscBlank } from "react-icons/vsc";
 import { IoCloseSharp } from "react-icons/io5";
 import { BiMinus } from "react-icons/bi";
 
-const Terminal = () => {
+import type { ScreenType } from "../interactive-resume/page";
+
+interface Props {
+  changeScreen: (screen: ScreenType) => void;
+}
+
+const Terminal = ({ changeScreen }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
   return (
     <motion.div
       style={{
@@ -50,6 +58,7 @@ const Terminal = () => {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onClick={() => router.push("/")}
           >
             {isHovered ? <IoCloseSharp size={15} /> : <VscBlank size={15} />}
           </div>
@@ -63,6 +72,7 @@ const Terminal = () => {
               alignItems: "center",
               justifyContent: "center",
             }}
+            onClick={() => changeScreen("icon")}
           >
             {isHovered ? <BiMinus size={15} /> : <VscBlank size={15} />}
           </div>

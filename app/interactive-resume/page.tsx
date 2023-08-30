@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, ReactEventHandler } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { BsFillTerminalFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+
 import SmallIcon from "../components/SmallIcon";
 import Terminal from "../components/Teminal";
 
@@ -27,7 +26,7 @@ const Page = () => {
       {screen === "icon" ? (
         <SmallIcon changeScreen={changeScreen} />
       ) : (
-        <Terminal />
+        <Terminal changeScreen={changeScreen} />
       )}
     </div>
   );

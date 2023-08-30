@@ -25,8 +25,8 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.container}>
         <div className={styles["name-wrapper"]}>
-          <h2>RunningWater</h2>
-          <h2>RunningWater</h2>
+          <h2>RunninGWateR</h2>
+          <h2>RunninGWateR</h2>
         </div>
         <div className={styles["box-wrapper"]}>
           <LinkCircle href="/notion-resume">
