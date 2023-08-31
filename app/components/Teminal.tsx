@@ -9,6 +9,7 @@ import { BiMinus } from "react-icons/bi";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import type { ScreenType } from "../interactive-resume/page";
+import addCommand from "../libs/add-command";
 
 interface Props {
   changeScreen: (screen: ScreenType) => void;
@@ -32,16 +33,27 @@ const Terminal = ({ changeScreen }: Props) => {
   const onValid: SubmitHandler<FormValues> = (data) => {
     // 다른 명령어 없이 공백 문자로만 입력하면? trim을 한 후에 그대로 입력을 한다.
     if (data.command.trim() === pwd.trim()) {
-      setCommands((prev) => [...prev, pwd]);
+      const cmd = `<p>${pwd}</p>`;
+      setCommands((prev) => [...prev, cmd]);
     } else {
+      const reg = /<[^>]*>?/g;
+      const cmd = `<p>${data.command.replace(reg, "")}</p>`;
+      const addedCommand = addCommand(data.command.replace(reg, ""));
       setCommands((prev) => [
         ...prev,
-        data.command,
-        "존재하지 않는 명령어입니다.",
+        cmd,
+        addedCommand === ""
+          ? "<p>존재하지 않는 명령어입니다.</p>"
+          : addedCommand,
       ]);
     }
     // 해당하는 명령어가 있다면? 커맨드 뒤에 붙여서 실행한다.
     // 해당하는 명령어가 없다면? 커맨드 뒤에 해당 하는 명령어가 없다고 붙여서 실행한다.
+
+    /**
+     * 들어오는 문자열에는 태그를 모두 제거한다.
+     * 거기서 내가 사용할 태그를 붙여서 쓴다.
+     */
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -120,9 +132,8 @@ const Terminal = ({ changeScreen }: Props) => {
         }}
         onPointerDownCapture={(e) => e.stopPropagation()}
       >
-        {commands.map((command, index) => (
-          <p key={index}>{command}</p>
-        ))}
+        <div dangerouslySetInnerHTML={{ __html: commands.join("") }} />
+
         <Controller
           name="command"
           control={control}
