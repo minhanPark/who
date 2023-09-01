@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import SmallIcon from "../components/SmallIcon";
 import Terminal from "../components/Teminal";
+import getImage from "../libs/get-image";
 
 // export const metadata: Metadata = {
 //   ...getMetaTag({
@@ -17,7 +18,7 @@ import Terminal from "../components/Teminal";
 export type ScreenType = "icon" | "terminal";
 
 const Page = () => {
-  const [imageSrc, setImageSrc] = useState("/background.webp");
+  const [imageSrc, setImageSrc] = useState(() => getImage("state"));
   const [screen, setScreen] = useState<ScreenType>("terminal");
   const changeScreen = (screen: ScreenType) => {
     setScreen(screen);
@@ -30,7 +31,7 @@ const Page = () => {
         fill={true}
         style={{ objectFit: "cover" }}
         onError={() => {
-          setImageSrc("/background.jpg");
+          setImageSrc(() => getImage("error"));
         }}
       />
       {screen === "icon" ? (
