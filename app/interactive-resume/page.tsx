@@ -2,26 +2,26 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BsFillTerminalFill } from "react-icons/bs";
-import { motion } from "framer-motion";
 
-interface ImageMap {
-  "/background-light.webp": "/background-light.jpg";
-  "/background-dark.webp": "/background-dark.jpg";
-  [key: string]: string;
-}
+import SmallIcon from "../components/SmallIcon";
+import Terminal from "../components/Teminal";
 
-const fallbackImg: ImageMap = {
-  "/background-light.webp": "/background-light.jpg",
-  "/background-dark.webp": "/background-dark.jpg",
-};
+// export const metadata: Metadata = {
+//   ...getMetaTag({
+//     title: createTitle("인터랙티브 이력서"),
+//     description: "터미널 형태로 만든 이력서 입니다.",
+//     image: "/terminal-profile-image.png",
+//   }),
+// };
+
+export type ScreenType = "icon" | "terminal";
 
 const Page = () => {
-  const [imageSrc, setImageSrc] = useState(
-    new Date().getHours() > 7 && new Date().getHours() < 17
-      ? "/background-light.webp"
-      : "/background-dark.webp"
-  );
+  const [imageSrc, setImageSrc] = useState("/background.webp");
+  const [screen, setScreen] = useState<ScreenType>("terminal");
+  const changeScreen = (screen: ScreenType) => {
+    setScreen(screen);
+  };
   return (
     <div style={{ height: "100vh", position: "relative" }}>
       <Image
@@ -33,27 +33,11 @@ const Page = () => {
           setImageSrc(fallbackImg[imageSrc]);
         }}
       />
-      <motion.div
-        drag
-        dragMomentum={false}
-        whileDrag={{ cursor: "grabbing" }}
-        onClick={(e) => {
-          if (e.detail === 2) {
-            console.log("you clicked");
-          }
-        }}
-        style={{
-          position: "relative",
-          width: 62,
-          height: 62,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 100,
-        }}
-      >
-        <BsFillTerminalFill size={60} />
-      </motion.div>
+      {screen === "icon" ? (
+        <SmallIcon changeScreen={changeScreen} />
+      ) : (
+        <Terminal changeScreen={changeScreen} />
+      )}
     </div>
   );
 };

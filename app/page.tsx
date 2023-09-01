@@ -1,10 +1,15 @@
-import createTitle from "./libs/createTitle";
+import createTitle from "./libs/create-title";
 import styles from "./page.module.scss";
 import Link from "next/link";
+import type { Metadata } from "next";
+import getMetaTag from "./libs/get-meta-tag";
 
-export const metadata = {
-  title: createTitle("홈"),
-  description: "러닝워터의 포트폴리오 입니다.",
+export const metadata: Metadata = {
+  ...getMetaTag({
+    title: createTitle("홈"),
+    description: "Next.js로 만든 이력서입니다.",
+    image: "/profile-image.png",
+  }),
 };
 
 interface LinkProps {
@@ -25,8 +30,8 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.container}>
         <div className={styles["name-wrapper"]}>
-          <h2>RunningWater</h2>
-          <h2>RunningWater</h2>
+          <h2>RunninGWateR</h2>
+          <h2>RunninGWateR</h2>
         </div>
         <div className={styles["box-wrapper"]}>
           <LinkCircle href="/notion-resume">
