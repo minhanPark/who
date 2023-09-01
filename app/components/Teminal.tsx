@@ -18,7 +18,13 @@ interface Props {
 interface FormValues {
   command: string;
 }
-
+//-runningwater
+//--about
+//  -- introduce.txt
+//  -- links.txt
+//--work-experience
+//  -- optatumplatform
+//  -- strong-friend
 const pwd = "Runnungwater@runningwater ~: ";
 
 const Terminal = ({ changeScreen }: Props) => {
