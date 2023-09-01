@@ -30,7 +30,7 @@ const Page = () => {
         fill={true}
         style={{ objectFit: "cover" }}
         onError={() => {
-          setImageSrc(fallbackImg[imageSrc]);
+          setImageSrc("/background.jpg");
         }}
       />
       {screen === "icon" ? (

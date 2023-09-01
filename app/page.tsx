@@ -6,8 +6,9 @@ import getMetaTag from "./libs/get-meta-tag";
 
 export const metadata: Metadata = {
   ...getMetaTag({
-    title: createTitle("홈"),
-    description: "Next.js로 만든 이력서입니다.",
+    title: createTitle("이력서"),
+    description:
+      "끊임없이 흘러가겠다는 의미로 Runningwater라는 닉네임을 사용하고 있습니다.",
     image: "/profile-image.png",
   }),
 };

@@ -9,7 +9,8 @@ import getMetaTag from "../libs/get-meta-tag";
 export const metadata: Metadata = {
   ...getMetaTag({
     title: createTitle("노션 이력서"),
-    description: "노션페이지를 통해서 만든 이력서 입니다.",
+    description:
+      "끊임없이 흘러가겠다는 의미로 Runningwater라는 닉네임을 사용하고 있습니다.",
     image: "/notion-profile-image.jpg",
   }),
 };
