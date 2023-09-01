@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Roboto } from "next/font/google";
-import createTitle from "./libs/createTitle";
+import createTitle from "./libs/create-title";
 
 const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
