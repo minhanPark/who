@@ -6,14 +6,19 @@ import { motion } from "framer-motion";
 import { VscBlank } from "react-icons/vsc";
 import { IoCloseSharp } from "react-icons/io5";
 import { BiMinus } from "react-icons/bi";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler, Controller, set } from "react-hook-form";
 
 import type { ScreenType } from "../interactive-resume/page";
-import addCommand from "../libs/add-command";
+import addCommand, { getFolders, FolderName } from "../libs/add-command";
 
 interface Props {
   changeScreen: (screen: ScreenType) => void;
 }
+
+// /로 시작하면 절대위치고, 절대 위치에서는 하나씩 타고 내려가서 자식인지 판단하고 마지막에 자신으로 바꾼다.
+// 위에 경우가 아니면 상대위치고 .. 로 타고 올라 갈때 부모가 있는 지  판단한다. 그리고 부모로 바꾼다
+// .이나 ./ 일때는 그냥 현재위치 그대로 하면된다.
+// ~ 일땐 runningwater폴더로 바꾼다.
 
 interface FormValues {
   command: string;
@@ -25,37 +30,62 @@ interface FormValues {
 //--work-experience
 //  -- optatumplatform
 //  -- strong-friend
-const pwd = "Runnungwater@runningwater ~: ";
+const getCurrentDisplayName = (currentFolder: FolderName) => {
+  const displayName = getFolders(currentFolder).displayName;
+  return `Runnungwater@runningwater ${displayName} % `;
+};
 
 const Terminal = ({ changeScreen }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const [commands, setCommands] = useState<string[]>([]);
+  const [currentFolder, setCurrentFolder] =
+    useState<FolderName>("runningwater");
   const router = useRouter();
   const { handleSubmit, control, reset } = useForm<FormValues>({
     defaultValues: {
-      command: pwd,
+      command: getCurrentDisplayName("runningwater"),
     },
   });
+  const displayName = getCurrentDisplayName(currentFolder);
+
   const onValid: SubmitHandler<FormValues> = (data) => {
     // 다른 명령어 없이 공백 문자로만 입력하면? trim을 한 후에 그대로 입력을 한다.
-    if (data.command.trim() === pwd.trim()) {
-      const cmd = `<p>${pwd}</p>`;
-      setCommands((prev) => [...prev, cmd]);
-    } else {
-      const reg = /<[^>]*>?/g;
-      const cmd = `<p>${data.command.replace(reg, "")}</p>`;
-      const addedCommand = addCommand(data.command.replace(reg, ""));
-      setCommands((prev) => [
-        ...prev,
-        cmd,
-        addedCommand === ""
-          ? "<p>존재하지 않는 명령어입니다.</p>"
-          : addedCommand,
-      ]);
+    if (data.command.trim() === displayName.trim()) {
+      setCommands((prev) => [...prev, `<p>${displayName}</p>`]);
+      return;
     }
-    // 해당하는 명령어가 있다면? 커맨드 뒤에 붙여서 실행한다.
-    // 해당하는 명령어가 없다면? 커맨드 뒤에 해당 하는 명령어가 없다고 붙여서 실행한다.
 
+    // const reg = /<[^>]*>?/g;
+    //   const cmd = `<p>${data.command.replace(reg, "")}</p>`;
+    //   const addedCommand = addCommand(data.command.replace(reg, ""));
+    //   setCommands((prev) => [
+    //     ...prev,
+    //     cmd,
+    //     addedCommand === ""
+    //       ? "<p>존재하지 않는 명령어입니다.</p>"
+    //       : addedCommand,
+    //   ]);
+    const tagReg = /<[^>]*>?/g;
+    const commandWithTagsRemoved = data.command
+      .split(displayName)[1]
+      .replace(tagReg, "");
+    // cd ~
+    // ls 등등 나옴
+    const { addedCommands, newCurrentFolder } = addCommand({
+      command: commandWithTagsRemoved,
+      currentFolder,
+    });
+    // 받아오는 값중에 폴더가 다르면 폴더를 변경
+    // displayname을 그린다.
+    if (newCurrentFolder !== currentFolder) {
+      setCurrentFolder(newCurrentFolder);
+    }
+    // 나오는 명령어를 모두 그린다.
+    setCommands((prev) => [
+      ...prev,
+      `<p>${displayName}${commandWithTagsRemoved}</p>`,
+      addedCommands,
+    ]);
     /**
      * 들어오는 문자열에는 태그를 모두 제거한다.
      * 거기서 내가 사용할 태그를 붙여서 쓴다.
@@ -66,7 +96,7 @@ const Terminal = ({ changeScreen }: Props) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit(onValid)();
-      reset({ command: pwd });
+      reset({ command: getCurrentDisplayName(currentFolder) });
     }
   };
   return (
@@ -147,7 +177,7 @@ const Terminal = ({ changeScreen }: Props) => {
             <textarea
               value={value}
               onChange={(e) => {
-                if (e.target.value.indexOf(pwd) === 0) {
+                if (e.target.value.indexOf(displayName) === 0) {
                   onChange(e);
                 }
                 return;
