@@ -82,6 +82,17 @@ const addCommand = ({ command, currentFolder }: AddCommand) => {
       commands = commandMap["help"];
       break;
     }
+    case "pwd": {
+      commands = `<p>${folders[currentFolder].pwd}</p>`;
+      break;
+    }
+    case "ls": {
+      const [folder, files] = folders[currentFolder].children;
+      const folderList = folder.map((f) => `<p>${f}</p>`).join("");
+      const fileList = files.map((f) => `<p>${f}</p>`).join("");
+      commands = `<div style="display: grid; grid-template-columns: 1fr 1fr;">${folderList}${fileList}</div>`;
+      break;
+    }
     default: {
       commands = `zsh: command not found: ${reservedWord} ${option ?? ""}`;
     }
