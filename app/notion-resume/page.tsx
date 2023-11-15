@@ -6,6 +6,8 @@ import Notion from "../../app/components/Notion";
 import createTitle from "../libs/create-title";
 import getMetaTag from "../libs/get-meta-tag";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   ...getMetaTag({
     title: createTitle("노션 이력서"),
