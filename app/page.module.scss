@@ -88,6 +88,7 @@
   max-width: 10rem;
   display: flex;
   justify-content: center;
+  gap: 1rem;
   @media screen and (max-width: $mobile) {
     max-width: 5rem;
   }
