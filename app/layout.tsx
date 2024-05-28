@@ -1,10 +1,9 @@
-import "./globals.css";
-import { Roboto } from "next/font/google";
-import createTitle from "./libs/create-title";
 // @ts-ignore
 import { GoogleTagManager } from "@next/third-parties/google";
 
-const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
+import "./globals.css";
+import createTitle from "./libs/create-title";
+import { roboto } from "./fonts";
 
 export const metadata = {
   title: createTitle(),
