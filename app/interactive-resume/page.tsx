@@ -1,11 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-
-import SmallIcon from "../components/SmallIcon";
-import Terminal from "../components/Teminal";
-import getImage from "../libs/get-image";
+import { FcDocument } from "react-icons/fc";
+import { DesktopIcon } from "../components/desktop-icon";
 
 // export const metadata: Metadata = {
 //   ...getMetaTag({
@@ -15,30 +11,17 @@ import getImage from "../libs/get-image";
 //   }),
 // };
 
-export type ScreenType = "icon" | "terminal";
-
 const Page = () => {
-  const [imageSrc, setImageSrc] = useState(() => getImage("state"));
-  const [screen, setScreen] = useState<ScreenType>("terminal");
-  const changeScreen = (screen: ScreenType) => {
-    setScreen(screen);
-  };
+  const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
   return (
-    <div style={{ height: "100vh", position: "relative" }}>
-      <Image
-        src={imageSrc}
-        alt="background"
-        fill={true}
-        style={{ objectFit: "cover" }}
-        onError={() => {
-          setImageSrc(() => getImage("error"));
-        }}
-      />
-      {screen === "icon" ? (
-        <SmallIcon changeScreen={changeScreen} />
-      ) : (
-        <Terminal changeScreen={changeScreen} />
-      )}
+    <div
+      className={`h-screen ${
+        isDay
+          ? "bg-[url('/background-light.webp')]"
+          : "bg-[url('/background-dark.webp')]"
+      }`}
+    >
+      <DesktopIcon icon={FcDocument} />
     </div>
   );
 };
