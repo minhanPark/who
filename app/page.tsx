@@ -1,10 +1,11 @@
-import createTitle from "./libs/create-title";
-import styles from "./page.module.scss";
-import Link from "next/link";
 import type { Metadata } from "next";
-import getMetaTag from "./libs/get-meta-tag";
 import { SiNotion } from "react-icons/si";
 import { MdLaptopMac } from "react-icons/md";
+
+import createTitle from "./libs/create-title";
+import styles from "./page.module.scss";
+import getMetaTag from "./libs/get-meta-tag";
+import { LinkCircle } from "./components/main-link-circle";
 
 export const metadata: Metadata = {
   ...getMetaTag({
@@ -15,34 +16,21 @@ export const metadata: Metadata = {
   }),
 };
 
-interface LinkProps {
-  href: string;
-  children: React.ReactNode;
-}
-
-const LinkCircle: React.FC<LinkProps> = ({ href, children }) => {
-  return (
-    <Link className={styles.box} href={href}>
-      {children}
-    </Link>
-  );
-};
-
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
+    <main className="min-h-screen w-screen bg-background-blue flex justify-center items-center">
+      <div className="w-full h-full">
         <div className={styles["name-wrapper"]}>
           <h2>RunninGWateR</h2>
           <h2>RunninGWateR</h2>
         </div>
-        <div className={styles["box-wrapper"]}>
+        <div className="flex justify-center gap-4 mt-3">
           <LinkCircle href="/notion-resume">
             <SiNotion />
           </LinkCircle>
-          {/* <LinkCircle href="/resume">
+          <LinkCircle href="/resume">
             <MdLaptopMac />
-          </LinkCircle> */}
+          </LinkCircle>
         </div>
       </div>
     </main>

@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         "deep-blue": "#1666ba",
         "main-blue": "#368ce7",
-        "$background-blue": "#deecfb",
+        "background-blue": "#deecfb",
       },
     },
   },

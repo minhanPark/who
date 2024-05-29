@@ -6,5 +6,12 @@ interface LinkCircle {
 }
 
 export const LinkCircle = ({ href, children }: LinkCircle) => {
-  return <Link href={href}>{children}</Link>;
+  return (
+    <Link
+      className="bg-white p-2.5 rounded-full shadow-lg hover:text-main-blue text-3xl md:text-5xl"
+      href={href}
+    >
+      {children}
+    </Link>
+  );
 };
