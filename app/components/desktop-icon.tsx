@@ -1,7 +1,6 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import { IconType } from "react-icons";
 import { motion } from "framer-motion";
 import { FcFolder, FcDocument } from "react-icons/fc";
 import clsx from "clsx";

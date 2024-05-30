@@ -34,7 +34,7 @@ const Page = () => {
   return (
     <div
       className={clsx(
-        "h-screen",
+        "h-screen w-full",
         isDay
           ? "bg-[url('/background-light.webp')]"
           : "bg-[url('/background-dark.webp')]",
