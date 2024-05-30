@@ -1,27 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { IconType } from "react-icons";
 import { motion } from "framer-motion";
 import { FcFolder, FcDocument } from "react-icons/fc";
 import clsx from "clsx";
 
 import { pretendard } from "../fonts";
+import type { DesktopList, DesktopApp } from "../interactive-resume/type";
 
-type DesktopIcon = {
-  isFolder?: boolean;
-  icon?: IconType;
+type DesktopIcon = DesktopApp & {
+  handleFocus: Dispatch<SetStateAction<DesktopList | null>>;
+  isFocus: boolean;
 };
 
-export function DesktopIcon({ isFolder, icon }: DesktopIcon) {
-  const [isFocus, setIsFocus] = useState(false);
+export function DesktopIcon({
+  isFolder = false,
+  icon,
+  isFocus,
+  handleFocus,
+  title,
+}: DesktopIcon) {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log("e.detail", e.detail);
+    e.stopPropagation();
     if (e.detail === 1) {
-      setIsFocus((prev) => !prev);
+      handleFocus((prev) => (prev === title ? null : title));
       return;
     } else if (e.detail === 2) {
-      setIsFocus(false);
+      handleFocus(null);
       // TODO: 여기서 모달창 열리도록 하면됨
       console.log("더블클릭");
     }
@@ -43,11 +49,11 @@ export function DesktopIcon({ isFolder, icon }: DesktopIcon) {
         className={clsx(
           pretendard.className,
           "text-sm",
-          "text-slate-800",
+          "text-neutral-50",
           isFocus ? "font-semibold" : "font-normal"
         )}
       >
-        자기 소개
+        {title}
       </span>
     </motion.div>
   );
