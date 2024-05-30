@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FcDocument } from "react-icons/fc";
 
 import { DesktopIcon } from "../components/desktop-icon";
@@ -29,6 +29,7 @@ const DesktopAppList: DesktopApp[] = [
 const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
   const [isFocus, setIsFocus] = useState<DesktopList | null>(null);
+  const constraintsRef = useRef(null);
 
   return (
     <div
@@ -43,6 +44,7 @@ const Page = () => {
       onClick={() => {
         setIsFocus(null);
       }}
+      ref={constraintsRef}
     >
       {DesktopAppList.map((app) => (
         <DesktopIcon
@@ -52,6 +54,7 @@ const Page = () => {
           handleFocus={setIsFocus}
           isFocus={isFocus === app.title}
           isFolder={app.isFolder}
+          constraints={constraintsRef}
         />
       ))}
     </div>

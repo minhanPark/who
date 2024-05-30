@@ -12,6 +12,7 @@ import type { DesktopList, DesktopApp } from "../interactive-resume/type";
 type DesktopIcon = DesktopApp & {
   handleFocus: Dispatch<SetStateAction<DesktopList | null>>;
   isFocus: boolean;
+  constraints?: React.RefObject<HTMLDivElement>;
 };
 
 export function DesktopIcon({
@@ -20,6 +21,7 @@ export function DesktopIcon({
   isFocus,
   handleFocus,
   title,
+  constraints,
 }: DesktopIcon) {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -43,6 +45,8 @@ export function DesktopIcon({
         isFocus ? "bg-gray-300 bg-opacity-50" : "bg-transparent"
       )}
       onClick={handleClick}
+      dragConstraints={constraints}
+      whileDrag={{ zIndex: 100 }}
     >
       <Icon className="size-12" />
       <span
