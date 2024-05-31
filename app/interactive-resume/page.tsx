@@ -39,7 +39,7 @@ const Page = () => {
           ? "bg-[url('/background-light.webp')]"
           : "bg-[url('/background-dark.webp')]",
         "bg-no-repeat bg-cover bg-center",
-        "flex items-center justify-center gap-3"
+        "flex items-center justify-center gap-3 relative"
       )}
       onClick={() => {
         setIsFocus(null);
