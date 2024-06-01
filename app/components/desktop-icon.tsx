@@ -49,8 +49,9 @@ export function DesktopIcon({
   const Icon = isFolder ? FcFolder : RenderedIcon;
 
   const clonedModal = cloneElement(modal, {
-    isOpen: isModalOpen,
-    onClose: closeModal,
+    closeModal,
+    constraints,
+    icon: Icon,
   });
   return (
     <>
