@@ -6,6 +6,7 @@ import { FcDocument } from "react-icons/fc";
 import { DesktopIcon } from "../components/desktop-icon";
 import clsx from "clsx";
 import type { DesktopApp, DesktopList } from "./type";
+import { TempModal } from "../components/temp-modal";
 
 // export const metadata: Metadata = {
 //   ...getMetaTag({
@@ -20,10 +21,10 @@ const DesktopAppList: DesktopApp[] = [
     icon: FcDocument,
     title: "자기 소개",
   },
-  {
-    isFolder: true,
-    title: "프로젝트",
-  },
+  // {
+  //   isFolder: true,
+  //   title: "프로젝트",
+  // },
 ];
 
 const Page = () => {
@@ -55,6 +56,7 @@ const Page = () => {
           isFocus={isFocus === app.title}
           isFolder={app.isFolder}
           constraints={constraintsRef}
+          modal={<TempModal />}
         />
       ))}
     </div>
