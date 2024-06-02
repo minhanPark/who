@@ -28,7 +28,7 @@ export default function Home() {
           <LinkCircle href="/notion-resume">
             <SiNotion />
           </LinkCircle>
-          <LinkCircle href="/resume">
+          <LinkCircle href="/interactive-resume">
             <MdLaptopMac />
           </LinkCircle>
         </div>

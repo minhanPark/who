@@ -20,7 +20,7 @@ export function TempModal({ closeModal, constraints, icon }: Modal) {
   const RenderedIcon = icon || FcDocument;
   return (
     <motion.div
-      className="bg-slate-50 max-w-lg min-w-96 w-full rounded-md flex flex-col overflow-hidden absolute"
+      className="bg-slate-50 max-w-lg min-w-96 w-full rounded-md flex flex-col overflow-hidden absolute shadow-lg"
       drag
       dragMomentum={false}
       dragConstraints={constraints}
