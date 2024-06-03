@@ -1,20 +1,17 @@
 "use client";
 
+import { Metadata } from "next";
 import { useState, useRef } from "react";
 import { FcDocument } from "react-icons/fc";
+import clsx from "clsx";
 
 import { DesktopIcon } from "../components/desktop-icon";
-import clsx from "clsx";
 import type { DesktopApp, DesktopList } from "./type";
 import { TempModal } from "../components/temp-modal";
 
-// export const metadata: Metadata = {
-//   ...getMetaTag({
-//     title: createTitle("인터랙티브 이력서"),
-//     description: "터미널 형태로 만든 이력서 입니다.",
-//     image: "/terminal-profile-image.png",
-//   }),
-// };
+export const metadata: Metadata = {
+  title: "인터랙티브 이력서 | 러닝워터",
+};
 
 const DesktopAppList: DesktopApp[] = [
   {

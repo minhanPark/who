@@ -3,18 +3,11 @@ import "react-notion-x/src/styles.css";
 import type { Metadata } from "next";
 
 import Notion from "../../app/components/Notion";
-import createTitle from "../libs/create-title";
-import getMetaTag from "../libs/get-meta-tag";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  ...getMetaTag({
-    title: createTitle("노션 이력서"),
-    description:
-      "끊임없이 흘러가겠다는 의미로 Runningwater라는 닉네임을 사용하고 있습니다.",
-    image: "/notion-profile-image.jpg",
-  }),
+  title: "노션 이력서 | 러닝워터",
 };
 
 const notion = new NotionAPI();
