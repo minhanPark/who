@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { FcDocument } from "react-icons/fc";
+import { FcDocument, FcFeedback } from "react-icons/fc";
 import clsx from "clsx";
 
 import { DesktopIcon } from "../components/desktop-icon";
@@ -15,7 +15,8 @@ const DesktopAppList: DesktopApp[] = [
   },
   // {
   //   isFolder: true,
-  //   title: "프로젝트",
+  //   // @ts-ignore
+  //   title: "sns & contact",
   // },
 ];
 
@@ -23,6 +24,10 @@ const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
   const [isFocus, setIsFocus] = useState<DesktopList | null>(null);
   const constraintsRef = useRef(null);
+  // const handleClick = (e: React.MouseEvent<HTMLOrSVGElement>) => {
+  //   // 클릭했을 때 메일이 뜨도록 트리거할 수 있다.
+  //   window.location.href = "mailto:aaa@b.com";
+  // };
 
   return (
     <div
@@ -51,6 +56,7 @@ const Page = () => {
           modal={<TempModal />}
         />
       ))}
+      {/* <FcFeedback className="size-12" onClick={handleClick} /> */}
     </div>
   );
 };
