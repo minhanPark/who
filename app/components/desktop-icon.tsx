@@ -6,9 +6,13 @@ import { FcFolder, FcDocument } from "react-icons/fc";
 import clsx from "clsx";
 
 import { pretendard } from "../fonts";
-import type { DesktopList, DesktopApp } from "../interactive-resume/type";
+import type { DesktopList } from "../interactive-resume/type";
+import { IconType } from "react-icons";
 
-type DesktopIcon = DesktopApp & {
+type DesktopIcon = {
+  isFolder?: boolean;
+  icon?: IconType;
+  title: DesktopList;
   handleFocus: Dispatch<SetStateAction<DesktopList | null>>;
   isFocus: boolean;
   constraints?: React.RefObject<HTMLDivElement>;
@@ -72,6 +76,7 @@ export function DesktopIcon({
             pretendard.className,
             "text-sm",
             "text-neutral-50",
+            "text-wrap",
             isFocus ? "font-semibold" : "font-normal"
           )}
         >

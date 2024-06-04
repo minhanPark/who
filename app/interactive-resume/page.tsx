@@ -5,20 +5,8 @@ import { FcDocument, FcFeedback } from "react-icons/fc";
 import clsx from "clsx";
 
 import { DesktopIcon } from "../components/desktop-icon";
-import type { DesktopApp, DesktopList } from "./type";
+import type { DesktopList } from "./type";
 import { TempModal } from "../components/temp-modal";
-
-const DesktopAppList: DesktopApp[] = [
-  {
-    icon: FcDocument,
-    title: "자기 소개",
-  },
-  // {
-  //   isFolder: true,
-  //   // @ts-ignore
-  //   title: "sns & contact",
-  // },
-];
 
 const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
@@ -44,18 +32,23 @@ const Page = () => {
       }}
       ref={constraintsRef}
     >
-      {DesktopAppList.map((app) => (
-        <DesktopIcon
-          key={app.title}
-          title={app.title}
-          icon={app.icon}
-          handleFocus={setIsFocus}
-          isFocus={isFocus === app.title}
-          isFolder={app.isFolder}
-          constraints={constraintsRef}
-          modal={<TempModal />}
-        />
-      ))}
+      <DesktopIcon
+        title="자기 소개"
+        icon={FcDocument}
+        handleFocus={setIsFocus}
+        isFocus={isFocus === "자기 소개"}
+        isFolder={false}
+        constraints={constraintsRef}
+        modal={<TempModal />}
+      />
+      <DesktopIcon
+        title="소셜 및 메일"
+        handleFocus={setIsFocus}
+        isFocus={isFocus === "소셜 및 메일"}
+        isFolder={true}
+        constraints={constraintsRef}
+        modal={<TempModal />}
+      />
       {/* <FcFeedback className="size-12" onClick={handleClick} /> */}
     </div>
   );
