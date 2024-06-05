@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { FcDocument, FcFeedback } from "react-icons/fc";
+import { FcDocument } from "react-icons/fc";
 import clsx from "clsx";
 
 import { DesktopIcon } from "../components/desktop-icon";
 import type { DesktopList } from "./type";
-import { TempModal } from "../components/temp-modal";
+import { AboutMe } from "../components/modal/about-me";
 
 const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
@@ -39,7 +39,7 @@ const Page = () => {
         isFocus={isFocus === "자기 소개"}
         isFolder={false}
         constraints={constraintsRef}
-        modal={<TempModal />}
+        modal={<AboutMe />}
       />
       <DesktopIcon
         title="소셜 및 메일"
@@ -47,9 +47,8 @@ const Page = () => {
         isFocus={isFocus === "소셜 및 메일"}
         isFolder={true}
         constraints={constraintsRef}
-        modal={<TempModal />}
+        modal={<AboutMe />}
       />
-      {/* <FcFeedback className="size-12" onClick={handleClick} /> */}
     </div>
   );
 };

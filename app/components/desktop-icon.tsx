@@ -56,6 +56,7 @@ export function DesktopIcon({
     closeModal,
     constraints,
     icon: Icon,
+    title,
   });
   return (
     <>
