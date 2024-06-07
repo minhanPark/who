@@ -1,19 +1,11 @@
 "use client";
 
-import { IconType } from "react-icons";
 import Image from "next/image";
 import clsx from "clsx";
 
 import { pretendard } from "../../fonts";
 import { ModalContainer } from "./modal-container";
-import { DesktopList } from "../../interactive-resume/type";
-
-type Modal = {
-  closeModal?: () => void;
-  constraints?: React.RefObject<HTMLDivElement>;
-  icon?: IconType;
-  title?: DesktopList;
-};
+import type { Modal } from "./type";
 
 export function AboutMe({ closeModal, constraints, icon, title }: Modal) {
   return (

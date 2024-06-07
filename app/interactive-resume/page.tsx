@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { DesktopIcon } from "../components/desktop-icon";
 import type { DesktopList } from "./type";
 import { AboutMe } from "../components/modal/about-me";
+import { SocialAndMail } from "../components/modal/social-and-mail";
 
 const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
@@ -47,7 +48,7 @@ const Page = () => {
         isFocus={isFocus === "소셜 및 메일"}
         isFolder={true}
         constraints={constraintsRef}
-        modal={<AboutMe />}
+        modal={<SocialAndMail />}
       />
     </div>
   );

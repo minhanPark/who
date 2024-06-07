@@ -27,6 +27,7 @@ export function ModalContainer({
   children,
   zIndexNumber = 10,
 }: ModalContainer) {
+  //TODO: zIndex가 적용 안되는 것 같음
   const zIndex = `z-${zIndexNumber}`;
   return (
     <motion.div
