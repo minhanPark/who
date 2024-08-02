@@ -15,7 +15,6 @@ export function AboutMe({ closeModal, constraints, icon, title }: Modal) {
       icon={icon}
       maxWidth="max-w-lg"
       title={title}
-      zIndexNumber={20}
     >
       <div className="aspect-video relative w-full rounded-md overflow-hidden">
         <Image
