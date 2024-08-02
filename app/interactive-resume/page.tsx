@@ -8,15 +8,12 @@ import { DesktopIcon } from "../components/desktop-icon";
 import type { DesktopList } from "./type";
 import { AboutMe } from "../components/modal/about-me";
 import { SocialAndMail } from "../components/modal/social-and-mail";
+import { WorkExperience } from "../components/modal/work-experience";
 
 const Page = () => {
   const isDay = new Date().getHours() > 8 && new Date().getHours() < 18;
   const [isFocus, setIsFocus] = useState<DesktopList | null>(null);
   const constraintsRef = useRef(null);
-  // const handleClick = (e: React.MouseEvent<HTMLOrSVGElement>) => {
-  //   // 클릭했을 때 메일이 뜨도록 트리거할 수 있다.
-  //   window.location.href = "mailto:aaa@b.com";
-  // };
 
   return (
     <div
@@ -49,6 +46,14 @@ const Page = () => {
         isFolder={true}
         constraints={constraintsRef}
         modal={<SocialAndMail />}
+      />
+      <DesktopIcon
+        title="경력"
+        handleFocus={setIsFocus}
+        isFocus={isFocus === "경력"}
+        isFolder={true}
+        constraints={constraintsRef}
+        modal={<WorkExperience />}
       />
     </div>
   );

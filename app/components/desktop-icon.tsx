@@ -64,7 +64,7 @@ export function DesktopIcon({
         drag
         dragMomentum={false}
         className={clsx(
-          "inline-flex flex-col gap-1 items-center p-2 rounded-md cursor-pointer",
+          "inline-flex flex-col gap-1 items-center p-2 rounded-md cursor-pointer z-10",
           isFocus ? "bg-gray-300 bg-opacity-50" : "bg-transparent"
         )}
         onClick={handleClick}

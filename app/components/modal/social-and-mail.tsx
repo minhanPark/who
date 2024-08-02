@@ -26,7 +26,6 @@ export function SocialAndMail({ closeModal, constraints, icon, title }: Modal) {
       icon={icon}
       maxWidth="max-w-md"
       title={title}
-      zIndexNumber={10}
     >
       <div
         className="w-full h-60 flex items-start"

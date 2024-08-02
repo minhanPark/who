@@ -15,7 +15,6 @@ type ModalContainer = {
   maxWidth?: "max-w-xs" | "max-w-sm" | "max-w-md" | "max-w-lg" | "max-w-xl";
   title?: DesktopList;
   children: React.ReactNode;
-  zIndexNumber?: number;
 };
 
 export function ModalContainer({
@@ -25,16 +24,12 @@ export function ModalContainer({
   maxWidth = "max-w-lg",
   title,
   children,
-  zIndexNumber = 10,
 }: ModalContainer) {
-  //TODO: zIndex가 적용 안되는 것 같음
-  const zIndex = `z-${zIndexNumber}`;
   return (
     <motion.div
       className={clsx(
-        "bg-slate-50 min-w-80 w-full rounded-md flex flex-col overflow-hidden absolute shadow-lg",
-        maxWidth,
-        zIndex
+        "bg-slate-50 min-w-80 w-full rounded-md flex flex-col overflow-hidden absolute shadow-lg z-20",
+        maxWidth
       )}
       drag
       dragMomentum={false}
