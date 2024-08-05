@@ -28,7 +28,7 @@ export function SocialAndMail({ closeModal, constraints, icon, title }: Modal) {
       title={title}
     >
       <div
-        className="w-full h-60 flex items-start"
+        className="w-full h-60 flex items-start p-2"
         onClick={() => {
           setIsFocus(null);
         }}

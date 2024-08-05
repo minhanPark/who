@@ -51,7 +51,7 @@ export function ModalContainer({
         onPointerDownCapture={(e) => {
           e.stopPropagation();
         }}
-        className="flex-1 p-2 flex flex-col items-center gap-3"
+        className="flex-1 flex flex-col items-center gap-3"
       >
         {children}
       </div>
