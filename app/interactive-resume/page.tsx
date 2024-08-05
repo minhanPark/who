@@ -40,20 +40,20 @@ const Page = () => {
         modal={<AboutMe />}
       />
       <DesktopIcon
-        title="소셜 및 메일"
-        handleFocus={setIsFocus}
-        isFocus={isFocus === "소셜 및 메일"}
-        isFolder={true}
-        constraints={constraintsRef}
-        modal={<SocialAndMail />}
-      />
-      <DesktopIcon
         title="경력"
         handleFocus={setIsFocus}
         isFocus={isFocus === "경력"}
         isFolder={true}
         constraints={constraintsRef}
         modal={<WorkExperience />}
+      />
+      <DesktopIcon
+        title="소셜 및 메일"
+        handleFocus={setIsFocus}
+        isFocus={isFocus === "소셜 및 메일"}
+        isFolder={true}
+        constraints={constraintsRef}
+        modal={<SocialAndMail />}
       />
     </div>
   );

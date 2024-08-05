@@ -17,11 +17,11 @@ const optatumProjectList: Project[] = [
     taskList: [
       "공통 에러처리를 위해 React Query의 Provider를 커스텀",
       "최적화를 위해 파일들의 캐시 설정을 다르게 적용하도록 Nginx설정 작업",
-      "React Query를 통해 data에 관한 상태 관리를 처리 후 그 외의상태 관리는 보일러 플레이트가 적고 쉽게 적용이 가능한 Zustand를 활용해 처리하도록 작업",
+      "React Query를 통해 data에 관한 상태 관리를 처리 후 그 외의 상태 관리는 보일러 플레이트가 적고 쉽게 적용이 가능한 Zustand를 활용해 처리하도록 작업",
       "백엔드 없이 작업 진행이 필요해 MSW 구성을 통해 api 모킹 작업",
     ],
     techStack:
-      "React, Typescript, MUI, Tanstack-query, Zustand,React-hook-form, Docker, Nginx, MSW",
+      "React, Typescript, MUI, Tanstack-query, Zustand, React-hook-form, Docker, Nginx, MSW",
   },
   {
     header: "국내 PG 솔루션",
